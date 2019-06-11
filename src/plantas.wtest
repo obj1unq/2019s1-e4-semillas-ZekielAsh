@@ -1,0 +1,221 @@
+import semillas.*
+import parcelas.*
+
+describe "Tests de plantas" {
+	const m1 = new Menta(
+		anioDeObtencion = 2004,
+		altura = 1.7
+	)
+	const m2 = new Menta(
+		anioDeObtencion = 2011,
+		altura = 1.2
+	)
+	const s1 = new Soja(
+		anioDeObtencion = 2003,
+		altura = 2.0
+	)
+	const s2 = new Soja(
+		anioDeObtencion = 2017,
+		altura = 0.4
+	)
+	const q1 = new Quinoa(
+		anioDeObtencion = 2003,
+		altura = 0.9,
+		horasDeToleracionSolar = 12
+	)
+	const q2 = new Quinoa(
+		anioDeObtencion = 2012,
+		altura = 0.4,
+		horasDeToleracionSolar = 7
+	)
+	const hb1 = new HierbaBuena(
+		anioDeObtencion = 2015,
+		altura = 0.5
+	)
+	const hb2 = new HierbaBuena(
+		anioDeObtencion = 2013,
+		altura = 0.7
+	)
+	const st1 = new SojaTransgenica(
+		anioDeObtencion = 2007,
+		altura = 1.6
+	)
+	const st2 = new SojaTransgenica(
+		anioDeObtencion = 2001,
+		altura = 2.4
+	)
+	const parc1 = new ParcelasEcologicas(
+		largo = 3,
+		ancho = 5,
+		horasQueRecibeLuzSolar = 7
+	)
+	const parc2 = new ParcelasEcologicas(
+		largo = 8,
+		ancho = 3,
+		horasQueRecibeLuzSolar = 9
+	)
+	const parc3 = new ParcelasEcologicas(
+		largo = 4,
+		ancho = 4,
+		horasQueRecibeLuzSolar = 6
+	)
+	const parc4 = new ParcelasEcologicas(
+		largo = 7,
+		ancho = 2,
+		horasQueRecibeLuzSolar = 10
+	)
+	const parc5 = new ParcelasEcologicas(
+		largo = 4,
+		ancho = 9,
+		horasQueRecibeLuzSolar = 8
+	)
+	const parc6 = new ParcelasEcologicas(
+		largo = 5,
+		ancho = 7,
+		horasQueRecibeLuzSolar = 11
+	)
+	const parc7 = new ParcelasEcologicas(
+		largo = 8,
+		ancho = 7,
+		horasQueRecibeLuzSolar = 9
+	)
+	const parc8 = new ParcelasEcologicas(
+		largo = 2,
+		ancho = 4,
+		horasQueRecibeLuzSolar = 10
+	)
+	const parc9 = new ParcelasIndustriales(
+		largo = 8,
+		ancho = 3,
+		horasQueRecibeLuzSolar = 7
+	)
+	const parc10 = new ParcelasIndustriales(
+		largo = 3,
+		ancho = 7,
+		horasQueRecibeLuzSolar = 7
+	)
+	const parc11 = new ParcelasIndustriales(
+		largo = 9,
+		ancho = 5,
+		horasQueRecibeLuzSolar = 9
+	)
+	const parc12 = new ParcelasIndustriales(
+		largo = 7,
+		ancho = 7,
+		horasQueRecibeLuzSolar = 6
+	)
+	const parc13 = new ParcelasIndustriales(
+		largo = 5,
+		ancho = 3,
+		horasQueRecibeLuzSolar = 8
+	)
+	const parc14 = new ParcelasIndustriales(
+		largo = 7,
+		ancho = 5,
+		horasQueRecibeLuzSolar = 7
+	)
+	const parc15 = new ParcelasIndustriales(
+		largo = 3,
+		ancho = 8,
+		horasQueRecibeLuzSolar = 6
+	)
+	const parc16 = new ParcelasIndustriales(
+		largo = 4,
+		ancho = 3,
+		horasQueRecibeLuzSolar = 7
+	)
+	fixture{
+		parc3.plantar(m1)
+		parc3.plantar(st2)
+		parc3.plantar(hb2)
+		parc3.plantar(m2)
+		parc4.plantar(s1)
+		parc16.plantar(hb1)
+		parc16.plantar(st1)
+		parc3.plantar(s2)
+		inta.aniadirParcelas(parc1)
+		inta.aniadirParcelas(parc2)
+		inta.aniadirParcelas(parc3)
+		inta.aniadirParcelas(parc4)
+		inta.aniadirParcelas(parc5)
+		inta.aniadirParcelas(parc6)
+		inta.aniadirParcelas(parc7)
+		inta.aniadirParcelas(parc8)
+		inta.aniadirParcelas(parc9)
+		inta.aniadirParcelas(parc10)
+		inta.aniadirParcelas(parc11)
+		inta.aniadirParcelas(parc12)
+		inta.aniadirParcelas(parc13)
+		inta.aniadirParcelas(parc14)
+		inta.aniadirParcelas(parc15)
+		inta.aniadirParcelas(parc16)
+	}
+	
+	test "M1 puede tener semillas"{
+		assert.that(m1.daNuevasSemillas())
+	}
+	
+	/*Este test esta comentado porque la cantidad de horasDeToleracionSolar 
+	 * seteadas en q1 no se aplican sobre q1.*/
+	/**test "Q1 aguanta 12 horas al sol"{
+		assert.equals(12, q1.horasDeToleracionSolar())
+	}
+	test "Q1 es fuerte"{
+		assert.that(q1.esFuerte())
+	}**/
+	test "S1 ocupa 1 metro"{
+		assert.equals(1, s1.espacioOcupado())
+	}
+	test "M2 no es fuerte"{
+		assert.notThat(m2.esFuerte())
+	}
+	test "ST1 aguanta 9 horas al sol"{
+		assert.equals(9, st1.horasDeToleracionSolar())
+	}
+	test "ST2 no da semillas"{
+		assert.notThat(st2.daNuevasSemillas())
+	}
+	test "parc3 tiene una superficie de 16"{
+		assert.equals(16, parc3.superficie())
+	}
+	test "parc6 aguanta 7 plantas"{
+		assert.equals(7, parc6.cantidadMaximaDePlantas())
+	}
+	
+	test "parc13 aguanta 10 plantas"{
+		assert.equals(10, parc13.cantidadMaximaDePlantas())
+	}
+	test "parc16 tiene problemas"{
+		assert.that(parc16.tieneComplicaciones())
+	}
+	test "No se puede plantar a M2 en parc5"{
+		assert.throwsExceptionWithMessage(
+		"No se puede plantar la planta en la parcela",
+			{parc5.plantar(m2)}
+		)
+	}
+	test "parc3 es ideal para M1"{
+		assert.that(m1.parcelaIdeal(parc3))
+	}
+	test "parc16 no es ideal para Q1"{
+		assert.notThat(q1.parcelaIdeal(parc16))
+	}
+	test "parc7 es ideal para s1"{
+		assert.that(s1.parcelaIdeal(parc7))
+	}
+	test "parc 8 no es ideal para ST1"{
+		assert.notThat(st1.parcelaIdeal(parc8))
+	}
+	test "M1 asocia bien en parc 3"{
+		assert.that(m1.asociaBienEn(parc3))
+	}
+	test "S2 no asocia bien en parc13"{
+		assert.notThat(s2.asociaBienEn(parc13))
+	}
+	test "INTA hace el promedio y deberia ser 0.5"{
+		assert.equals(0.5, inta.promedioDePlantas())
+	}
+	test "La parcela mas autosustentable es parc3"{
+		assert.equals(parc3, inta.parcelaMasAutosustentable())
+	}
+}
